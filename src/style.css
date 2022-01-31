@@ -55,6 +55,9 @@ li {
   line-height: 19px;
 }
 
+#description {
+  text-transform: capitalize;
+}
 .float-left {
   float: left;
 }
