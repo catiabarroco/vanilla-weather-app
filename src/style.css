@@ -1,0 +1,13 @@
+footer{
+    text-align: center;
+
+}
+footer a{
+    
+    color: rgba(137, 43, 226, 0.493);
+}
+
+.aplication{
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    border-radius: 5px;
+}
