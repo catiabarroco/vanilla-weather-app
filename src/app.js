@@ -29,9 +29,9 @@ function formatDate(timestamp) {
 function showDateForecast(dateForecast) {
   let date = new Date(dateForecast * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let day = date.getDay()
-  
-  return days[day]
+  let day = date.getDay();
+
+  return days[day];
 }
 
 function displayForecast(response) {
@@ -49,7 +49,9 @@ function displayForecast(response) {
           forecastDay.dt
         )}</div>
         <img
-          src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
           alt=""
           width="45"
         />
@@ -119,36 +121,7 @@ function handleSubmit(event) {
   console.log(cityInputElement.value);
 }
 
-function showFahrenheitTemperature(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-
-  //remove .active class do °C e adiciona no °F
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-}
-
-function showCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-
-  //remove .active class do °F e adiciona no °C
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-}
-
-let celsiusTemperature = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 search("New York");

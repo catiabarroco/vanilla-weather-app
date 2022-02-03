@@ -1,6 +1,11 @@
 body {
   font-family: arial, sans-serif;
-  background: radial-gradient(circle at 10% 20%, rgb(255, 246, 236) 39.5%, rgba(100, 46, 122, 0.23) 100.2%) fixed;
+  background: radial-gradient(
+      circle at 10% 20%,
+      rgb(255, 246, 236) 39.5%,
+      rgba(100, 46, 122, 0.23) 100.2%
+    )
+    fixed;
 }
 
 .aplication {
@@ -69,30 +74,22 @@ li:first-letter {
   text-decoration: none;
 }
 
-.weather-temperature .active {
-  color: rgb(32, 33, 36);
-  cursor: default;
-  text-decoration: none;
-}
-
-
-.weather-forecast{
+.weather-forecast {
   margin-top: 20px;
   text-align: center;
   color: #000;
 }
 
-.weather-forecast-date{
+.weather-forecast-date {
   font-size: 16px;
   opacity: 0.5;
-  
 }
 
-.weather-forecast-temperature{
+.weather-forecast-temperature {
   font-size: 13px;
 }
 
-.weather-forecast-temperature-min{
+.weather-forecast-temperature-min {
   opacity: 0.5;
 }
 
