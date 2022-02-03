@@ -26,33 +26,48 @@ function formatDate(timestamp) {
   return `${days[day]} ${hours}:${minutes}`;
 }
 
-function displayForecast(response) {
-  console.log(response.data.daily)
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Fri", "Sat", "Sun", "Thu"];
-  let forecast = `<div class="row">`;
+function showDateForecast(dateForecast) {
+  let date = new Date(dateForecast * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = date.getDay()
+  
+  return days[day]
+}
 
-  days.forEach(function (days) {
-    forecast =
-      forecast +
-      `
-    <div class="col-2">
-      <div class="weather-forecast-date">${days}</div>
-      <img
-        src="http://openweathermap.org/img/wn/01d@2x.png"
-        alt=""
-        width="45"
-      />
-    <div class="weather-forecast-temperature">
-      <span class="weather-forecast-temperature-max">18°</span>
-      <span class="weather-forecast-temperature-min">12°</span>
-    </div>
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+        <div class="weather-forecast-date">${showDateForecast(
+          forecastDay.dt
+        )}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+          alt=""
+          width="45"
+        />
+        <div class="weather-forecast-temperature">
+          <span class="weather-forecast-temperature-max">${Math.round(
+            forecastDay.temp.max
+          )}°</span>
+          <span class="weather-forecast-temperature-min">${Math.round(
+            forecastDay.temp.min
+          )}°</span>
+        </div>
     </div>
 `;
+    }
   });
 
-  forecast = forecast + `</div>`;
-  forecastElement.innerHTML = forecast;
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordenates) {
@@ -137,4 +152,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemperature);
 
 search("New York");
-
